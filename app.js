@@ -1,8 +1,9 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
-// 👉 මෙතැනට ඔයාගේ project URL / anon key දෙන්න
+// >>> මේ line දෙකට ඔයාගේ project URL / public key දාන්න (පාස්වර්ඩ් key එක නෙවෙයි)
 const SUPABASE_URL = 'https://qcgnithiuijkfwljgjtw.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_LIK_puTBlk5sfOFu4ShIPw_XWTlFd55';
+// <<< ඉස්සෙල්ල saved කරගත්ත values දෙක මෙතැනට දාන්න
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -33,25 +34,34 @@ function setLoggedInUI(isLoggedIn) {
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Navigation buttons
+// ---------- NAVIGATION / HOME BUTTONS ----------
+
+// Home hero buttons → auth
 document.getElementById('home-register').onclick = () => showSection('auth');
 document.getElementById('home-login').onclick = () => showSection('auth');
+// Header login
 document.getElementById('nav-login').onclick = () => showSection('auth');
+// Help
 document.getElementById('nav-help').onclick = () => showSection('help');
-document.getElementById('card-freefire').onclick = () => showSection('topup');
 
-// My Orders → load + show
+// My Orders (load + show)
 document.getElementById('nav-orders').onclick = async () => {
   await loadOrders();
   showSection('orders');
 };
 
+// Free Fire SG card + Hero CTA → Topup page
+document.getElementById('card-freefire').onclick = () => showSection('topup');
+document.getElementById('hero-topup').onclick = () => showSection('topup');
+
+// Logout
 document.getElementById('nav-logout').onclick = async () => {
   await supabase.auth.signOut();
   setLoggedInUI(false);
   showSection('home');
 };
 
+// Qty +/- buttons
 document.getElementById('qty-minus').onclick = () => {
   if (qty > 1) {
     qty--;
@@ -112,6 +122,8 @@ function renderProducts() {
   }
 }
 
+// ---------- LOAD PRODUCTS ----------
+
 async function loadProducts() {
   const { data, error } = await supabase
     .from('products')
@@ -128,7 +140,8 @@ async function loadProducts() {
   renderProducts();
 }
 
-// Register
+// ---------- AUTH: REGISTER / LOGIN ----------
+
 document.getElementById('register-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const name = document.getElementById('reg-name').value.trim();
@@ -152,7 +165,6 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
   alert('Account created. Check your email and confirm before login.');
 });
 
-// Login
 document.getElementById('login-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const email = document.getElementById('login-email').value.trim();
@@ -167,11 +179,11 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
   setLoggedInUI(true);
   await loadProducts();
   await loadOrders();
-  // Login උනාට පස්සේ Dashboard නෙවෙයි, Home page එක
-  showSection('home');
+  showSection('home'); // login උනාට පස්සේ Home page එකට යයි
 });
 
-// Place order
+// ---------- PLACE ORDER ----------
+
 document.getElementById('topup-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const messageEl = document.getElementById('topup-message');
@@ -272,6 +284,8 @@ document.getElementById('topup-form').addEventListener('submit', async (e) => {
   }
 });
 
+// ---------- LOAD ORDERS ----------
+
 async function loadOrders() {
   const {
     data: { user },
@@ -310,6 +324,8 @@ async function loadOrders() {
   }
 }
 
+// ---------- INIT ----------
+
 async function init() {
   const {
     data: { session }
@@ -325,7 +341,7 @@ async function init() {
     setLoggedInUI(false);
   }
 
-  // Home page (hero + services) default
+  // Start always on Home page (hero + services)
   showSection('home');
 
   supabase.auth.onAuthStateChange(async (_event, session) => {

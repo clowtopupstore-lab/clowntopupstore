@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Clown Topup Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="logo-wrap">
+      <img src="logo.png" alt="Clown Topup Store logo" class="logo">
+      <div class="site-title">Clown Topup Store</div>
+    </div>
+    <nav class="nav">
+      <button id="nav-login" class="btn-link">Login</button>
+      <button id="nav-logout" class="btn-link hidden">Logout</button>
+      <button id="nav-orders" class="btn-link hidden">My Orders</button>
+      <button id="nav-help" class="btn-link">Help</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home-section" class="section">
+      <h1>Welcome to Clown Topup Store</h1>
+      <p>Fast & secure Free Fire (SG) diamond and membership topups.</p>
+      <div class="cta-buttons">
+        <button id="home-register" class="btn-primary">Register</button>
+        <button id="home-login" class="btn-secondary">Login</button>
+      </div>
+    </section>
+
+    <section id="auth-section" class="section hidden">
+      <div class="auth-forms">
+        <div class="card">
+          <h2>Register</h2>
+          <form id="register-form">
+            <input type="text" id="reg-name" placeholder="Full Name" required>
+            <input type="tel" id="reg-phone" placeholder="Phone (WhatsApp)" required>
+            <input type="email" id="reg-email" placeholder="Email" required>
+            <input type="password" id="reg-password" placeholder="Password" required>
+            <button type="submit" class="btn-primary">Create account</button>
+            <p class="note">You will receive a confirmation email.</p>
+          </form>
+        </div>
+        <div class="card">
+          <h2>Login</h2>
+          <form id="login-form">
+            <input type="email" id="login-email" placeholder="Email" required>
+            <input type="password" id="login-password" placeholder="Password" required>
+            <button type="submit" class="btn-primary">Login</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="dashboard-section" class="section hidden">
+      <h2>Dashboard</h2>
+      <div class="cards-grid">
+        <div class="card clickable" id="card-freefire">
+          <h3>Free Fire (SG) Topup</h3>
+          <p>Diamonds, Memberships, Evo Access.</p>
+        </div>
+        <div class="card disabled">
+          <h3>Social Media Booster</h3>
+          <p>Coming soon...</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="topup-section" class="section hidden">
+      <h2>Free Fire (SG) Topup</h2>
+      <form id="topup-form" class="card">
+        <div class="field-group">
+          <label>Free Fire UID</label>
+          <input type="text" id="ff-uid" required>
+        </div>
+        <div class="field-group">
+          <label>Game Username</label>
+          <input type="text" id="ff-username" required>
+        </div>
+
+        <h3>Memberships</h3>
+        <div id="membership-list" class="products-grid"></div>
+
+        <h3>Evo Access</h3>
+        <div id="evo-list" class="products-grid"></div>
+
+        <h3>Diamonds</h3>
+        <div id="diamonds-list" class="products-grid"></div>
+
+        <div class="field-group">
+          <label>Selected Package</label>
+          <div id="selected-product-text">None</div>
+        </div>
+
+        <div class="field-group qty-group">
+          <label>Quantity</label>
+          <div>
+            <button type="button" id="qty-minus" class="btn-circle">−</button>
+            <span id="qty-value">1</span>
+            <button type="button" id="qty-plus" class="btn-circle">+</button>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label>Payment Method</label>
+          <div class="payment-options">
+            <label><input type="radio" name="payment-method" value="bank" checked> Bank Transfer</label>
+            <label><input type="radio" name="payment-method" value="ezcash"> eZ Cash</label>
+            <label class="disabled"><input type="radio" disabled> Card (PayHere – Coming Soon)</label>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label>Transaction Reference No.</label>
+          <input type="text" id="payment-ref" required>
+        </div>
+
+        <div class="field-group">
+          <label>Slip Screenshot / Photo</label>
+          <input type="file" id="payment-slip" accept="image/*" required>
+        </div>
+
+        <div class="summary">
+          <div>Total Amount:</div>
+          <div id="total-amount">Rs. 0</div>
+        </div>
+
+        <button type="submit" class="btn-primary">Place Order</button>
+        <p id="topup-message" class="message"></p>
+      </form>
+    </section>
+
+    <section id="orders-section" class="section hidden">
+      <h2>My Orders</h2>
+      <div id="orders-list"></div>
+    </section>
+
+    <section id="help-section" class="section hidden">
+      <h2>Help / Payment Info</h2>
+      <div class="card">
+        <h3>Contact</h3>
+        <p>WhatsApp: <strong>0712283176</strong></p>
+      </div>
+      <div class="card">
+        <h3>Bank Transfer</h3>
+        <p><strong>BOC</strong><br>
+        Acc No: 94556904<br>
+        Name: W. M. V. N. N. Nawarathna<br>
+        Branch: Rattota</p>
+        <p><strong>People’s Bank</strong><br>
+        Acc No: 128200310020842<br>
+        Name: W. M. V. N. N. N. Nawarathna<br>
+        Branch: Rattota</p>
+      </div>
+      <div class="card">
+        <h3>eZ Cash</h3>
+        <p>Number: <strong>0743350447</strong></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Clown Topup Store &copy; <span id="year"></span>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+  </html>

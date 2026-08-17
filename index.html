@@ -2,67 +2,115 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Clown Topup Store</title>
+  <title>Clown Topup Store | Free Fire (SG) Topup</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090014">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="header">
-    <div class="logo-wrap">
-      <img src="logo.png" alt="Clown Topup Store logo" class="logo">
-      <div class="site-title">Clown Topup Store</div>
-    </div>
-    <nav class="nav">
-      <button id="nav-login" class="btn-link">Login</button>
-      <button id="nav-logout" class="btn-link hidden">Logout</button>
-      <button id="nav-orders" class="btn-link hidden">My Orders</button>
-      <button id="nav-help" class="btn-link">Help</button>
+  <!-- global glow effect -->
+  <div class="page-glow"></div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Clown Topup Store home" onclick="return false;">
+      <div class="brand-mark">🤡</div>
+      <div>
+        <strong>CLOWN</strong>
+        <span>TOPUP STORE</span>
+      </div>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <button class="nav-link active" type="button"
+        onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+        Home
+      </button>
+      <button class="nav-link" id="nav-help" type="button">Help Center</button>
     </nav>
+
+    <div class="header-actions">
+      <!-- Login / Logout / Orders (JS use කරන IDs) -->
+      <button id="nav-login" class="login-btn" type="button">↪ <span>Login</span></button>
+      <!-- old JS compatibility: hidden extra login button -->
+      <button id="home-login" class="login-btn hidden" type="button">Login</button>
+      <button id="nav-logout" class="login-btn hidden" type="button">⎋ <span>Logout</span></button>
+      <button id="nav-orders" class="login-btn hidden" type="button">📦 <span>Orders</span></button>
+      <!-- Register (home-register) -->
+      <button id="home-register" class="register-btn" type="button">Register</button>
+    </div>
+
+    <button class="menu-btn" type="button" aria-label="Open menu"
+      onclick="document.body.classList.toggle('menu-open')">
+      <span></span><span></span><span></span>
+    </button>
   </header>
 
   <main>
-    <!-- HOME – Hero + 2 services -->
+    <!-- ================= HOME (DESIGN PAGE) ================= -->
     <section id="home-section" class="section">
-      <div class="home-hero card">
-        <div class="home-hero-text">
-          <h1>Let’s top up your game with eZ Cash &amp; Bank</h1>
-          <p>
-            Fast &amp; secure Free Fire (SG) diamond &amp; membership topups.
-            Social media boosting coming soon.
-          </p>
-          <div class="hero-cta">
-            <button id="home-register" class="btn-primary">Register</button>
-            <button id="home-login" class="btn-secondary">Login</button>
-          </div>
-        </div>
-      </div>
-
-      <h2 class="home-subtitle">Select your service</h2>
-
-      <div class="cards-grid home-service-grid">
-        <div class="card clickable service-card" id="card-freefire">
-          <div class="service-icon">💎</div>
-          <h3>Free Fire (SG) Topup</h3>
-          <p class="note">
-            Diamonds · Memberships · Evo Access
-          </p>
-          <button class="btn-primary small-btn" type="button">Top Up</button>
-        </div>
-
-        <div class="card service-card disabled">
-          <div class="service-icon">📈</div>
-          <h3>Social Media Booster</h3>
-          <p class="note">
-            Instagram · Facebook · TikTok
-          </p>
-          <button class="btn-secondary small-btn" type="button" disabled>
-            Coming Soon
+      <!-- HERO SECTION -->
+      <section class="hero">
+        <!-- ඔයා Upload කරන්න ඕන hero image එක: assets/free-fire-hero.png -->
+        <img src="assets/free-fire-hero.png" alt="Free Fire neon gaming artwork">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <p class="eyebrow">WELCOME TO</p>
+          <h1>FREE FIRE <em>(SG)</em><br><span>TOP UP</span></h1>
+          <p class="trust">💎 Fast <b>•</b> Secure <b>•</b> Trusted</p>
+          <!-- Hero CTA → Topup page -->
+          <button id="hero-topup" class="primary-btn" type="button">
+            💎 TOP UP NOW <span>›</span>
           </button>
         </div>
-      </div>
+      </section>
+
+      <!-- SERVICES: FF SG + Booster -->
+      <section class="services" id="services">
+        <!-- Free Fire SG card (JS uses id="card-freefire") -->
+        <article class="service-card freefire" id="card-freefire">
+          <!-- Upload කරන්න: assets/free-fire-card.png -->
+          <img src="assets/free-fire-card.png" alt="Free Fire top up service">
+          <div class="card-shade"></div>
+          <div class="service-content">
+            <div class="sg-badge">🇸🇬 SG</div>
+            <h2>FREE FIRE <small>(SG)</small><br><em>TOP UP</em></h2>
+            <ul>
+              <li>💎 Diamonds</li>
+              <li>👑 Membership</li>
+              <li>⚡ Evo Access</li>
+            </ul>
+            <button class="primary-btn small" type="button">
+              🎮 TOP UP NOW <span>›</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- Social Media Booster card -->
+        <article class="service-card booster">
+          <!-- Upload කරන්න: assets/social-booster-card.png -->
+          <img src="assets/social-booster-card.png" alt="Social media booster service">
+          <div class="card-shade"></div>
+          <div class="service-content">
+            <h2>SOCIAL MEDIA<br><em>BOOSTER</em></h2>
+            <div class="social-icons">
+              <span>◎</span><span>♪</span><span>▶</span><span>f</span>
+            </div>
+            <p>Grow Your Social Media<br>Presence with Our Booster Service</p>
+            <div class="pending">◷ &nbsp; COMING SOON / PENDING</div>
+          </div>
+        </article>
+      </section>
+
+      <!-- FEATURE ROW -->
+      <section class="features" aria-label="Store benefits">
+        <div><b>💎</b><strong>100% Secure</strong><span>Your Safety Our Priority</span></div>
+        <div><b>ϟ</b><strong>Fast Delivery</strong><span>Instant Process</span></div>
+        <div><b>♧</b><strong>24/7 Support</strong><span>Always Here for You</span></div>
+      </section>
     </section>
 
-    <!-- AUTH (REGISTER / LOGIN) -->
+    <!-- ================= AUTH (REGISTER / LOGIN) ================= -->
     <section id="auth-section" class="section hidden">
       <div class="auth-forms">
         <div class="card">
@@ -99,28 +147,26 @@
       </div>
     </section>
 
-    <!-- DASHBOARD (simple – not used but kept for JS safety) -->
+    <!-- ================= DASHBOARD (simple placeholder) ================= -->
     <section id="dashboard-section" class="section hidden">
       <h2>Dashboard</h2>
       <p class="note">Use the Home page to select your service.</p>
     </section>
 
-    <!-- TOPUP PAGE (Free Fire SG) -->
+    <!-- ================= TOPUP PAGE (Free Fire SG) ================= -->
     <section id="topup-section" class="section hidden">
       <h2>Free Fire (SG) Topup</h2>
       <p class="topup-subtitle">
         Select your package, pay via Bank or eZ Cash and we will top up within 10–15 minutes.
       </p>
 
-      <!-- TOP PACKAGES -->
+      <!-- Packages -->
       <div class="card">
         <h3>SELECT DIAMOND PACKAGE</h3>
         <p class="note">Choose your package and get ready to shine!</p>
 
-        <!-- Diamonds row -->
         <div id="diamonds-list" class="products-grid diamonds-row"></div>
 
-        <!-- Membership + Evo Access -->
         <div class="packages-row">
           <div>
             <h4>Memberships</h4>
@@ -133,9 +179,9 @@
         </div>
       </div>
 
-      <!-- MAIN FORM GRID -->
+      <!-- Main form grid -->
       <form id="topup-form" class="topup-form-grid">
-        <!-- LEFT: PLACE ORDER -->
+        <!-- Place order -->
         <div class="card">
           <h3>Place Your Order</h3>
 
@@ -169,7 +215,7 @@
           </div>
         </div>
 
-        <!-- MIDDLE: PAYMENT METHOD -->
+        <!-- Payment method -->
         <div class="card">
           <h3>Payment Method</h3>
 
@@ -203,7 +249,7 @@
           </div>
         </div>
 
-        <!-- RIGHT: PAYMENT DETAILS -->
+        <!-- Payment details -->
         <div class="card">
           <h3>Payment Details</h3>
 
@@ -230,14 +276,14 @@
           </div>
         </div>
 
-        <!-- SUBMIT ROW -->
+        <!-- Submit row -->
         <div class="topup-submit-row">
           <button type="submit" class="btn-primary">Submit Order</button>
           <p id="topup-message" class="message"></p>
         </div>
       </form>
 
-      <!-- BOTTOM INFO CARDS -->
+      <!-- Bottom info cards -->
       <div class="topup-info-grid">
         <div class="card">
           <h3>Why Choose Us?</h3>
@@ -266,13 +312,13 @@
       </div>
     </section>
 
-    <!-- MY ORDERS -->
+    <!-- ================= ORDERS ================= -->
     <section id="orders-section" class="section hidden">
       <h2>My Orders</h2>
       <div id="orders-list"></div>
     </section>
 
-    <!-- HELP -->
+    <!-- ================= HELP ================= -->
     <section id="help-section" class="section hidden">
       <h2>Help / Payment Info</h2>
       <div class="card">
@@ -298,7 +344,9 @@
   </main>
 
   <footer class="footer">
-    Clown Topup Store &copy; <span id="year"></span>
+    🤡 <strong>CLOWN</strong> TOPUP STORE<br>
+    <span>Fast • Secure • Trusted</span><br>
+    <small>© <span id="year"></span> Clown Topup Store. All Rights Reserved.</small>
   </footer>
 
   <script type="module" src="app.js"></script>

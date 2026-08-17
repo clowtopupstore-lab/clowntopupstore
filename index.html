@@ -21,6 +21,7 @@
   </header>
 
   <main>
+    <!-- HOME -->
     <section id="home-section" class="section">
       <h1>Welcome to Clown Topup Store</h1>
       <p>Fast & secure Free Fire (SG) diamond and membership topups.</p>
@@ -30,15 +31,24 @@
       </div>
     </section>
 
+    <!-- AUTH (REGISTER / LOGIN) -->
     <section id="auth-section" class="section hidden">
       <div class="auth-forms">
         <div class="card">
           <h2>Register</h2>
           <form id="register-form">
-            <input type="text" id="reg-name" placeholder="Full Name" required>
-            <input type="tel" id="reg-phone" placeholder="Phone (WhatsApp)" required>
-            <input type="email" id="reg-email" placeholder="Email" required>
-            <input type="password" id="reg-password" placeholder="Password" required>
+            <div class="field-group">
+              <input type="text" id="reg-name" placeholder="Full Name" required>
+            </div>
+            <div class="field-group">
+              <input type="tel" id="reg-phone" placeholder="Phone (WhatsApp)" required>
+            </div>
+            <div class="field-group">
+              <input type="email" id="reg-email" placeholder="Email" required>
+            </div>
+            <div class="field-group">
+              <input type="password" id="reg-password" placeholder="Password" required>
+            </div>
             <button type="submit" class="btn-primary">Create account</button>
             <p class="note">You will receive a confirmation email.</p>
           </form>
@@ -46,14 +56,19 @@
         <div class="card">
           <h2>Login</h2>
           <form id="login-form">
-            <input type="email" id="login-email" placeholder="Email" required>
-            <input type="password" id="login-password" placeholder="Password" required>
+            <div class="field-group">
+              <input type="email" id="login-email" placeholder="Email" required>
+            </div>
+            <div class="field-group">
+              <input type="password" id="login-password" placeholder="Password" required>
+            </div>
             <button type="submit" class="btn-primary">Login</button>
           </form>
         </div>
       </div>
     </section>
 
+    <!-- DASHBOARD -->
     <section id="dashboard-section" class="section hidden">
       <h2>Dashboard</h2>
       <div class="cards-grid">
@@ -68,103 +83,137 @@
       </div>
     </section>
 
+    <!-- TOPUP PAGE (NEW LAYOUT) -->
     <section id="topup-section" class="section hidden">
       <h2>Free Fire (SG) Topup</h2>
-      <form id="topup-form" class="card">
-        <div class="field-group">
-          <label>Free Fire UID</label>
-          <input type="text" id="ff-uid" required>
-        </div>
-        <div class="field-group">
-          <label>Game Username</label>
-          <input type="text" id="ff-username" required>
-        </div>
+      <p class="topup-subtitle">
+        Select your package, pay via Bank or eZ Cash and we will top up within 10–15 minutes.
+      </p>
 
-        <h3>Memberships</h3>
-        <div id="membership-list" class="products-grid"></div>
+      <!-- TOP PACKAGES -->
+      <div class="card">
+        <h3>SELECT DIAMOND PACKAGE</h3>
+        <p class="note">Choose your package and get ready to shine!</p>
 
-        <h3>Evo Access</h3>
-        <div id="evo-list" class="products-grid"></div>
+        <!-- Diamonds row -->
+        <div id="diamonds-list" class="products-grid diamonds-row"></div>
 
-        <h3>Diamonds</h3>
-        <div id="diamonds-list" class="products-grid"></div>
-
-        <div class="field-group">
-          <label>Selected Package</label>
-          <div id="selected-product-text">None</div>
-        </div>
-
-        <div class="field-group qty-group">
-          <label>Quantity</label>
+        <!-- Membership + Evo Access -->
+        <div class="packages-row">
           <div>
-            <button type="button" id="qty-minus" class="btn-circle">−</button>
-            <span id="qty-value">1</span>
-            <button type="button" id="qty-plus" class="btn-circle">+</button>
+            <h4>Memberships</h4>
+            <div id="membership-list" class="products-grid small-grid"></div>
+          </div>
+          <div>
+            <h4>Evo Access</h4>
+            <div id="evo-list" class="products-grid small-grid"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIN FORM GRID -->
+      <form id="topup-form" class="topup-form-grid">
+        <!-- LEFT: PLACE ORDER -->
+        <div class="card">
+          <h3>Place Your Order</h3>
+
+          <div class="field-group">
+            <label>Free Fire UID</label>
+            <input type="text" id="ff-uid" required>
+          </div>
+
+          <div class="field-group">
+            <label>Player Name</label>
+            <input type="text" id="ff-username" required>
+          </div>
+
+          <div class="field-group">
+            <label>Selected Package</label>
+            <div id="selected-product-text">No package selected</div>
+          </div>
+
+          <div class="field-group qty-group">
+            <label>Quantity</label>
+            <div>
+              <button type="button" id="qty-minus" class="btn-circle">−</button>
+              <span id="qty-value">1</span>
+              <button type="button" id="qty-plus" class="btn-circle">+</button>
+            </div>
+          </div>
+
+          <div class="summary">
+            <div>Total Amount</div>
+            <div id="total-amount">Rs. 0</div>
           </div>
         </div>
 
-        <div class="field-group">
-          <label>Payment Method</label>
-          <div class="payment-options">
-            <label><input type="radio" name="payment-method" value="bank" checked> Bank Transfer</label>
-            <label><input type="radio" name="payment-method" value="ezcash"> eZ Cash</label>
-            <label class="disabled"><input type="radio" disabled> Card (PayHere – Coming Soon)</label>
+        <!-- MIDDLE: PAYMENT METHOD -->
+        <div class="card">
+          <h3>Payment Method</h3>
+
+          <div class="field-group">
+            <label>Choose your payment method</label>
+            <div class="payment-options">
+              <label>
+                <input type="radio" name="payment-method" value="ezcash" checked>
+                eZ Cash (Recommended)
+              </label>
+              <label>
+                <input type="radio" name="payment-method" value="bank">
+                Bank Transfer
+              </label>
+              <label class="disabled">
+                <input type="radio" disabled>
+                Card (PayHere – Coming Soon)
+              </label>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label>Transaction Reference No.</label>
+            <input type="text" id="payment-ref" required>
+          </div>
+
+          <div class="field-group">
+            <label>Upload Payment Receipt</label>
+            <input type="file" id="payment-slip" accept="image/*" required>
+            <p class="note">Take a clear screenshot / photo of your payment slip or SMS.</p>
           </div>
         </div>
 
-        <div class="field-group">
-          <label>Transaction Reference No.</label>
-          <input type="text" id="payment-ref" required>
+        <!-- RIGHT: PAYMENT DETAILS -->
+        <div class="card">
+          <h3>Payment Details</h3>
+
+          <div class="field-group">
+            <label>eZ Cash Number</label>
+            <div class="highlight-box">0743350447</div>
+          </div>
+
+          <div class="field-group">
+            <label>Bank Accounts</label>
+            <div class="note">
+              <strong>BOC</strong><br>
+              94556904 – W. M. V. N. N. Nawarathna – Rattota<br><br>
+              <strong>People’s Bank</strong><br>
+              128200310020842 – W. M. V. N. N. N. Nawarathna – Rattota
+            </div>
+          </div>
+
+          <div class="field-group">
+            <p class="note">
+              Please send the exact amount and upload the receipt.
+              We will verify and top up within 10–15 minutes.
+            </p>
+          </div>
         </div>
 
-        <div class="field-group">
-          <label>Slip Screenshot / Photo</label>
-          <input type="file" id="payment-slip" accept="image/*" required>
+        <!-- SUBMIT ROW -->
+        <div class="topup-submit-row">
+          <button type="submit" class="btn-primary">Submit Order</button>
+          <p id="topup-message" class="message"></p>
         </div>
-
-        <div class="summary">
-          <div>Total Amount:</div>
-          <div id="total-amount">Rs. 0</div>
-        </div>
-
-        <button type="submit" class="btn-primary">Place Order</button>
-        <p id="topup-message" class="message"></p>
       </form>
-    </section>
 
-    <section id="orders-section" class="section hidden">
-      <h2>My Orders</h2>
-      <div id="orders-list"></div>
-    </section>
-
-    <section id="help-section" class="section hidden">
-      <h2>Help / Payment Info</h2>
-      <div class="card">
-        <h3>Contact</h3>
-        <p>WhatsApp: <strong>0712283176</strong></p>
-      </div>
-      <div class="card">
-        <h3>Bank Transfer</h3>
-        <p><strong>BOC</strong><br>
-        Acc No: 94556904<br>
-        Name: W. M. V. N. N. Nawarathna<br>
-        Branch: Rattota</p>
-        <p><strong>People’s Bank</strong><br>
-        Acc No: 128200310020842<br>
-        Name: W. M. V. N. N. N. Nawarathna<br>
-        Branch: Rattota</p>
-      </div>
-      <div class="card">
-        <h3>eZ Cash</h3>
-        <p>Number: <strong>0743350447</strong></p>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    Clown Topup Store &copy; <span id="year"></span>
-  </footer>
-
-  <script type="module" src="app.js"></script>
-</body>
-  </html>
+      <!-- BOTTOM INFO CARDS -->
+      <div class="topup-info-grid">

@@ -38,8 +38,13 @@ document.getElementById('home-register').onclick = () => showSection('auth');
 document.getElementById('home-login').onclick = () => showSection('auth');
 document.getElementById('nav-login').onclick = () => showSection('auth');
 document.getElementById('nav-help').onclick = () => showSection('help');
-document.getElementById('nav-orders').onclick = () => showSection('orders');
 document.getElementById('card-freefire').onclick = () => showSection('topup');
+
+// My Orders → load + show
+document.getElementById('nav-orders').onclick = async () => {
+  await loadOrders();
+  showSection('orders');
+};
 
 document.getElementById('nav-logout').onclick = async () => {
   await supabase.auth.signOut();
@@ -161,7 +166,9 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
 
   setLoggedInUI(true);
   await loadProducts();
-  showSection('dashboard');
+  await loadOrders();
+  // Login උනාට පස්සේ Dashboard නෙවෙයි, Home page එක
+  showSection('home');
 });
 
 // Place order
@@ -304,27 +311,31 @@ async function loadOrders() {
 }
 
 async function init() {
-  const { data: { session } } = await supabase.auth.getSession();
+  const {
+    data: { session }
+  } = await supabase.auth.getSession();
+
+  // packages load කරගන්න (Topup page use වෙනවා)
+  await loadProducts();
+
   if (session) {
     setLoggedInUI(true);
-    await loadProducts();
     await loadOrders();
-    showSection('dashboard');
   } else {
     setLoggedInUI(false);
-    showSection('home');
   }
+
+  // Home page (hero + services) default
+  showSection('home');
 
   supabase.auth.onAuthStateChange(async (_event, session) => {
     if (session) {
       setLoggedInUI(true);
-      await loadProducts();
       await loadOrders();
-      showSection('dashboard');
     } else {
       setLoggedInUI(false);
-      showSection('home');
     }
+    showSection('home');
   });
 }
 

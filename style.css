@@ -8,17 +8,30 @@
   --danger: #f97373;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
+
+/* -------- BODY + BACKGROUND ANIMATION -------- */
 
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: radial-gradient(circle at top, #2d0b5a, #05030a 60%);
+  background-size: 200% 200%;
+  animation: bg-move 18s ease-in-out infinite alternate;
   color: var(--text);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
+
+@keyframes bg-move {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
+/* -------- HEADER -------- */
 
 .header {
   display: flex;
@@ -48,6 +61,7 @@ body {
 
 .site-title {
   font-weight: 700;
+  font-size: 0.95rem;
 }
 
 .nav {
@@ -67,6 +81,8 @@ body {
   color: var(--accent);
 }
 
+/* -------- LAYOUT -------- */
+
 main {
   flex: 1;
   padding: 1rem;
@@ -85,6 +101,26 @@ main {
 h1, h2, h3 {
   margin-top: 0;
 }
+
+/* Home section මැදට */
+
+#home-section {
+  min-height: calc(100vh - 140px); /* header + footer අඩු කරලා */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#home-section h1,
+#home-section p {
+  text-align: center;
+}
+
+#home-section .cta-buttons {
+  align-self: center;
+}
+
+/* -------- CARDS / FORMS -------- */
 
 .card {
   background: rgba(12, 10, 24, 0.9);
@@ -116,6 +152,8 @@ h1, h2, h3 {
   opacity: 0.4;
 }
 
+/* Auth forms */
+
 .auth-forms {
   display: grid;
   gap: 1rem;
@@ -126,6 +164,8 @@ h1, h2, h3 {
     grid-template-columns: 1fr 1fr;
   }
 }
+
+/* -------- INPUTS / BUTTONS -------- */
 
 input[type="text"],
 input[type="email"],
@@ -185,6 +225,8 @@ input::file-selector-button {
   background: var(--accent-soft);
 }
 
+/* CTA buttons on home */
+
 .cta-buttons {
   display: flex;
   flex-direction: column;
@@ -197,6 +239,8 @@ input::file-selector-button {
     flex-direction: row;
   }
 }
+
+/* -------- PRODUCT CARDS -------- */
 
 .products-grid {
   display: grid;
@@ -224,6 +268,8 @@ input::file-selector-button {
   box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
 }
 
+/* Qty */
+
 .qty-group {
   display: flex;
   align-items: center;
@@ -245,6 +291,8 @@ input::file-selector-button {
   background: var(--accent);
 }
 
+/* Payment */
+
 .payment-options label {
   display: block;
   margin-bottom: 0.25rem;
@@ -253,6 +301,8 @@ input::file-selector-button {
 .payment-options .disabled {
   opacity: 0.4;
 }
+
+/* Summary */
 
 .summary {
   display: flex;
@@ -266,6 +316,8 @@ input::file-selector-button {
   margin-bottom: 0.7rem;
 }
 
+/* Messages */
+
 .message {
   font-size: 0.85rem;
   margin-top: 0.3rem;
@@ -278,6 +330,8 @@ input::file-selector-button {
 .message.success {
   color: #22c55e;
 }
+
+/* Orders list */
 
 #orders-list {
   display: flex;
@@ -308,6 +362,8 @@ input::file-selector-button {
   color: var(--muted);
 }
 
+/* Footer */
+
 .footer {
   text-align: center;
   padding: 0.75rem;
@@ -315,4 +371,4 @@ input::file-selector-button {
   color: var(--muted);
   border-top: 1px solid #111827;
   background: rgba(5, 3, 10, 0.9);
-  }
+}

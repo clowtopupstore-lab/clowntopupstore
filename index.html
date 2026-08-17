@@ -21,13 +21,44 @@
   </header>
 
   <main>
-    <!-- HOME -->
+    <!-- HOME – Hero + 2 services -->
     <section id="home-section" class="section">
-      <h1>Welcome to Clown Topup Store</h1>
-      <p>Fast & secure Free Fire (SG) diamond and membership topups.</p>
-      <div class="cta-buttons">
-        <button id="home-register" class="btn-primary">Register</button>
-        <button id="home-login" class="btn-secondary">Login</button>
+      <div class="home-hero card">
+        <div class="home-hero-text">
+          <h1>Let’s top up your game with eZ Cash &amp; Bank</h1>
+          <p>
+            Fast &amp; secure Free Fire (SG) diamond &amp; membership topups.
+            Social media boosting coming soon.
+          </p>
+          <div class="hero-cta">
+            <button id="home-register" class="btn-primary">Register</button>
+            <button id="home-login" class="btn-secondary">Login</button>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="home-subtitle">Select your service</h2>
+
+      <div class="cards-grid home-service-grid">
+        <div class="card clickable service-card" id="card-freefire">
+          <div class="service-icon">💎</div>
+          <h3>Free Fire (SG) Topup</h3>
+          <p class="note">
+            Diamonds · Memberships · Evo Access
+          </p>
+          <button class="btn-primary small-btn" type="button">Top Up</button>
+        </div>
+
+        <div class="card service-card disabled">
+          <div class="service-icon">📈</div>
+          <h3>Social Media Booster</h3>
+          <p class="note">
+            Instagram · Facebook · TikTok
+          </p>
+          <button class="btn-secondary small-btn" type="button" disabled>
+            Coming Soon
+          </button>
+        </div>
       </div>
     </section>
 
@@ -68,22 +99,13 @@
       </div>
     </section>
 
-    <!-- DASHBOARD -->
+    <!-- DASHBOARD (simple – not used but kept for JS safety) -->
     <section id="dashboard-section" class="section hidden">
       <h2>Dashboard</h2>
-      <div class="cards-grid">
-        <div class="card clickable" id="card-freefire">
-          <h3>Free Fire (SG) Topup</h3>
-          <p>Diamonds, Memberships, Evo Access.</p>
-        </div>
-        <div class="card disabled">
-          <h3>Social Media Booster</h3>
-          <p>Coming soon...</p>
-        </div>
-      </div>
+      <p class="note">Use the Home page to select your service.</p>
     </section>
 
-    <!-- TOPUP PAGE (NEW LAYOUT) -->
+    <!-- TOPUP PAGE (Free Fire SG) -->
     <section id="topup-section" class="section hidden">
       <h2>Free Fire (SG) Topup</h2>
       <p class="topup-subtitle">
@@ -217,3 +239,68 @@
 
       <!-- BOTTOM INFO CARDS -->
       <div class="topup-info-grid">
+        <div class="card">
+          <h3>Why Choose Us?</h3>
+          <p class="note">
+            • Fast delivery (10–15 min*)<br>
+            • 100% safe &amp; secure topups<br>
+            • Best prices in Sri Lanka
+          </p>
+        </div>
+        <div class="card">
+          <h3>How to Top Up?</h3>
+          <p class="note">
+            1. Select your package<br>
+            2. Enter UID &amp; player name<br>
+            3. Pay via Bank / eZ Cash<br>
+            4. Upload receipt &amp; submit
+          </p>
+        </div>
+        <div class="card">
+          <h3>Need Help?</h3>
+          <p class="note">
+            WhatsApp: <strong>0712283176</strong><br>
+            Online 10.00am – 11.00pm daily.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MY ORDERS -->
+    <section id="orders-section" class="section hidden">
+      <h2>My Orders</h2>
+      <div id="orders-list"></div>
+    </section>
+
+    <!-- HELP -->
+    <section id="help-section" class="section hidden">
+      <h2>Help / Payment Info</h2>
+      <div class="card">
+        <h3>Contact</h3>
+        <p>WhatsApp: <strong>0712283176</strong></p>
+      </div>
+      <div class="card">
+        <h3>Bank Transfer</h3>
+        <p><strong>BOC</strong><br>
+        Acc No: 94556904<br>
+        Name: W. M. V. N. N. N. Nawarathna<br>
+        Branch: Rattota</p>
+        <p><strong>People’s Bank</strong><br>
+        Acc No: 128200310020842<br>
+        Name: W. M. V. N. N. N. Nawarathna<br>
+        Branch: Rattota</p>
+      </div>
+      <div class="card">
+        <h3>eZ Cash</h3>
+        <p>Number: <strong>0743350447</strong></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Clown Topup Store &copy; <span id="year"></span>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

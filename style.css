@@ -143,7 +143,6 @@ main { width: min(1180px, calc(100% - 28px)); margin: 18px auto 80px; }
   padding: 38px 38px 30px; display: flex; flex-direction: column;
   align-items: flex-start; justify-content: flex-end;
 }
-
 .service-content h2 {
   font: 800 clamp(26px, 3vw, 39px)/.98 Orbitron;
   text-shadow: 0 3px 10px #000;
@@ -173,6 +172,22 @@ main { width: min(1180px, calc(100% - 28px)); margin: 18px auto 80px; }
   color: #c991e9; font-weight: 700;
 }
 .small { padding: 11px 18px; }
+
+/* ==> CARD දෙක pure image වගේ පේන්න overlay/text hide කරන block <== */
+.service-card.freefire .service-content,
+.service-card.freefire .card-shade,
+.service-card.booster .service-content,
+.service-card.booster .card-shade {
+  display: none;
+}
+
+.service-card.freefire,
+.service-card.booster {
+  border-radius: 24px;
+  border: none;
+  box-shadow: 0 0 20px rgba(151, 0, 255, .35);
+}
+/* <== END pure image block */
 
 /* bottom features row */
 
@@ -265,10 +280,9 @@ footer p { margin: 7px 0 12px; font-size: 13px; }
 }
 
 /* ===================================================================== */
-/*      EXTRA STYLES FOR AUTH / TOPUP / ORDERS (CLown system)            */
+/*      EXTRA STYLES FOR AUTH / TOPUP / ORDERS                           */
 /* ===================================================================== */
 
-/* Auth forms grid */
 .auth-forms {
   display: grid;
   gap: 1rem;
@@ -508,4 +522,4 @@ input::file-selector-button {
   .topup-info-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-}
+  }

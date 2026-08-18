@@ -1,9 +1,8 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
-// >>> මෙතැනට ඔයාගේ Supabase project URL / PUBLIC anon key දෙන්න
+// Supabase credentials (publishable key use කරනවා)
 const SUPABASE_URL = 'https://qcgnithiuijkfwljgjtw.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_LIK_puTBlk5sfOFu4ShIPw_XWTlFd55';
-// <<< මෙහි service_role / secret key දාන්න එපා
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -36,26 +35,32 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 // ---------- NAVIGATION / HOME BUTTONS ----------
 
-// Home hero buttons → auth
-document.getElementById('home-register').onclick = () => showSection('auth');
-document.getElementById('home-login').onclick = () => showSection('auth');
-
-// Header login button
-document.getElementById('nav-login').onclick = () => showSection('auth');
-
-// Help
+// Top nav: Home / Dashboard / Help
+document.getElementById('nav-home').onclick = () => showSection('home');
+document.getElementById('nav-dashboard').onclick = () => showSection('dashboard');
 document.getElementById('nav-help').onclick = () => showSection('help');
 
-// My Orders (load + show)
+// Home hero / header buttons → Auth
+document.getElementById('home-register').onclick = () => showSection('auth');
+document.getElementById('home-login').onclick = () => showSection('auth');
+document.getElementById('nav-login').onclick = () => showSection('auth');
+
+// My Orders nav
 document.getElementById('nav-orders').onclick = async () => {
   await loadOrders();
   showSection('orders');
 };
 
-// Free Fire SG card + Hero CTA → Topup page
-// (login අවශ්‍ය නැති – prices/UID බලන්න පුළුවන්)
+// Hero / Home cards → Topup (login අවශ්‍ය නැහැ – prices/UID/qty බලන්න පුළුවන්)
 document.getElementById('card-freefire').onclick = () => showSection('topup');
 document.getElementById('hero-topup').onclick = () => showSection('topup');
+
+// Dashboard cards
+document.getElementById('dash-freefire').onclick = () => showSection('topup');
+document.getElementById('dash-help').onclick = () => showSection('help');
+document.getElementById('dash-booster').onclick = () => {
+  alert('Social Media Booster service Coming Soon / Pending.');
+};
 
 // Logout
 document.getElementById('nav-logout').onclick = async () => {
@@ -181,7 +186,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
   setLoggedInUI(true);
   await loadProducts();
   await loadOrders();
-  showSection('home'); // login උනාට පස්සේ Home page එක
+  showSection('dashboard'); // login උනාට පස්සේ Dashboard
 });
 
 // ---------- PLACE ORDER ----------
@@ -218,7 +223,7 @@ document.getElementById('topup-form').addEventListener('submit', async (e) => {
   if (userError || !user) {
     messageEl.textContent = 'Order place කරන්න Register / Login වෙන්න.';
     messageEl.classList.add('error');
-    showSection('auth'); // Register/Login form open
+    showSection('auth');
     return;
   }
 
@@ -337,20 +342,21 @@ async function init() {
   if (session) {
     setLoggedInUI(true);
     await loadOrders();
+    showSection('dashboard');
   } else {
     setLoggedInUI(false);
+    showSection('home');
   }
-
-  showSection('home');
 
   supabase.auth.onAuthStateChange(async (_event, session) => {
     if (session) {
       setLoggedInUI(true);
       await loadOrders();
+      showSection('dashboard');
     } else {
       setLoggedInUI(false);
+      showSection('home');
     }
-    showSection('home');
   });
 }
 

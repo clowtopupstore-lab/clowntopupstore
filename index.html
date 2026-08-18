@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- global glow effect -->
   <div class="page-glow"></div>
 
   <!-- HEADER -->
@@ -22,21 +21,25 @@
     </a>
 
     <nav class="desktop-nav" aria-label="Main navigation">
-      <button class="nav-link active" type="button"
-        onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+      <button class="nav-link active" type="button" id="nav-home">
         Home
       </button>
-      <button class="nav-link" id="nav-help" type="button">Help Center</button>
+      <button class="nav-link" type="button" id="nav-dashboard">
+        Dashboard
+      </button>
+      <button class="nav-link" id="nav-help" type="button">
+        Help Center
+      </button>
     </nav>
 
     <div class="header-actions">
       <!-- Login / Logout / Orders (JS use කරන IDs) -->
       <button id="nav-login" class="login-btn" type="button">↪ <span>Login</span></button>
-      <!-- old JS compatibility: hidden extra login button -->
+      <!-- compatibility: extra hidden login button -->
       <button id="home-login" class="login-btn hidden" type="button">Login</button>
       <button id="nav-logout" class="login-btn hidden" type="button">⎋ <span>Logout</span></button>
       <button id="nav-orders" class="login-btn hidden" type="button">📦 <span>Orders</span></button>
-      <!-- Register (home-register) -->
+      <!-- Register -->
       <button id="home-register" class="register-btn" type="button">Register</button>
     </div>
 
@@ -47,18 +50,16 @@
   </header>
 
   <main>
-    <!-- ================= HOME (DESIGN PAGE) ================= -->
+    <!-- ================= HOME ================= -->
     <section id="home-section" class="section">
-      <!-- HERO SECTION -->
+      <!-- HERO BANNER -->
       <section class="hero">
-        <!-- ඔයා Upload කරන්න ඕන hero image එක: assets/free-fire-hero.png -->
         <img src="assets/free-fire-hero.png" alt="Free Fire neon gaming artwork">
         <div class="hero-overlay"></div>
         <div class="hero-content">
           <p class="eyebrow">WELCOME TO</p>
           <h1>FREE FIRE <em>(SG)</em><br><span>TOP UP</span></h1>
           <p class="trust">💎 Fast <b>•</b> Secure <b>•</b> Trusted</p>
-          <!-- Hero CTA → Topup page -->
           <button id="hero-topup" class="primary-btn" type="button">
             💎 TOP UP NOW <span>›</span>
           </button>
@@ -67,10 +68,10 @@
 
       <!-- SERVICES: FF SG + Booster -->
       <section class="services" id="services">
-        <!-- Free Fire SG card (JS uses id="card-freefire") -->
+        <!-- Free Fire SG card (pure image look, click → topup) -->
         <article class="service-card freefire" id="card-freefire">
-          <!-- Upload කරන්න: assets/free-fire-card.png -->
           <img src="assets/free-fire-card.png" alt="Free Fire top up service">
+          <!-- text/overlay CSS වලින් hide කරනවා -->
           <div class="card-shade"></div>
           <div class="service-content">
             <div class="sg-badge">🇸🇬 SG</div>
@@ -86,9 +87,8 @@
           </div>
         </article>
 
-        <!-- Social Media Booster card -->
+        <!-- Social Media Booster card (pure image look) -->
         <article class="service-card booster">
-          <!-- Upload කරන්න: assets/social-booster-card.png -->
           <img src="assets/social-booster-card.png" alt="Social media booster service">
           <div class="card-shade"></div>
           <div class="service-content">
@@ -108,6 +108,39 @@
         <div><b>ϟ</b><strong>Fast Delivery</strong><span>Instant Process</span></div>
         <div><b>♧</b><strong>24/7 Support</strong><span>Always Here for You</span></div>
       </section>
+    </section>
+
+    <!-- ================= DASHBOARD ================= -->
+    <section id="dashboard-section" class="section hidden">
+      <h2>Dashboard</h2>
+
+      <div class="dashboard-grid">
+        <!-- Free Fire SG Topup -->
+        <div class="card clickable dash-card" id="dash-freefire">
+          <div class="dash-icon">🎮</div>
+          <h3>Free Fire (SG) Top Up</h3>
+          <p class="note">Top up Diamonds, Membership &amp; Evo Access.</p>
+          <button class="btn-primary dash-btn" type="button">Open</button>
+        </div>
+
+        <!-- Social Media Booster -->
+        <div class="card dash-card disabled" id="dash-booster">
+          <div class="dash-icon">📣</div>
+          <h3>Social Media Booster</h3>
+          <p class="note">Grow your social media presence. Coming soon.</p>
+          <button class="btn-secondary dash-btn" type="button" disabled>
+            Pending
+          </button>
+        </div>
+
+        <!-- Help Center -->
+        <div class="card clickable dash-card" id="dash-help">
+          <div class="dash-icon">🆘</div>
+          <h3>Help Center</h3>
+          <p class="note">How to pay, contact &amp; FAQs.</p>
+          <button class="btn-primary dash-btn" type="button">Open</button>
+        </div>
+      </div>
     </section>
 
     <!-- ================= AUTH (REGISTER / LOGIN) ================= -->
@@ -145,12 +178,6 @@
           </form>
         </div>
       </div>
-    </section>
-
-    <!-- ================= DASHBOARD (simple placeholder) ================= -->
-    <section id="dashboard-section" class="section hidden">
-      <h2>Dashboard</h2>
-      <p class="note">Use the Home page to select your service.</p>
     </section>
 
     <!-- ================= TOPUP PAGE (Free Fire SG) ================= -->
@@ -329,7 +356,7 @@
         <h3>Bank Transfer</h3>
         <p><strong>BOC</strong><br>
         Acc No: 94556904<br>
-        Name: W. M. V. N. N. N. Nawarathna<br>
+        Name: W. M. V. N. N. Nawarathna<br>
         Branch: Rattota</p>
         <p><strong>People’s Bank</strong><br>
         Acc No: 128200310020842<br>

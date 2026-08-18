@@ -523,3 +523,32 @@ input::file-selector-button {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   }
+/* ==== MOBILE SIZE TUNING (hero + service cards smaller) ==== */
+
+/* tablets / phones */
+@media (max-width: 850px) {
+  .hero {
+    min-height: 420px;
+  }
+  .hero img {
+    min-height: 420px;
+  }
+
+  .service-card {
+    min-height: 340px;
+  }
+}
+
+/* small phones */
+@media (max-width: 420px) {
+  .hero {
+    min-height: 380px;
+  }
+  .hero img {
+    min-height: 380px;
+  }
+
+  .service-card {
+    min-height: 320px;
+  }
+}
